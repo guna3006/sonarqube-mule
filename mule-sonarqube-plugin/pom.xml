@@ -1,0 +1,100 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mulesoft.services</groupId>
+    <artifactId>mule-validation</artifactId>
+    <version>1.0.6</version>
+    <packaging>jar</packaging>
+
+	<url>https://maven.apache.org</url>
+	<description>Sonar Plugin for Mule Projects</description>
+
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sonar.apiVersion>9.4.0.54424</sonar.apiVersion>
+		<jaxb.api.version>2.3.3</jaxb.api.version>
+		<jaxb.version>2.3.2</jaxb.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.sonarsource.sonarqube</groupId>
+			<artifactId>sonar-plugin-api</artifactId>
+			<version>${sonar.apiVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.sonarsource.analyzer-commons</groupId>
+			<artifactId>sonar-xml-parsing</artifactId>
+			<version>2.14.0.3087</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom2</artifactId>
+			<version>2.0.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.1.0-alpha1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>3.0.0-beta2</version>
+		</dependency>
+		<dependency>
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.18.1</version>
+		</dependency>
+		<!-- JAXB Dependencies for Java 11 Compliance -->
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>${jaxb.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>${jaxb.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
+				<artifactId>sonar-packaging-maven-plugin</artifactId>
+				<version>1.17</version>
+				<extensions>true</extensions>
+				<configuration>
+					<pluginClass>com.mulesoft.services.tools.sonarqube.MulePlugin</pluginClass>
+					<pluginName>mulevalidations</pluginName>
+					<pluginKey>mulevalidations</pluginKey>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
